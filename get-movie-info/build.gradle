@@ -1,0 +1,39 @@
+buildscript {
+	ext.kotlin_version = '1.2.30'
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
+	}
+	repositories {
+		jcenter()
+	}
+}
+
+apply plugin: 'kotlin'
+
+ext.kotlin_version = '1.2.30'
+
+sourceCompatibility = 1.8
+compileKotlin {
+  kotlinOptions.jvmTarget = '1.8'
+}
+compileTestKotlin {
+  kotlinOptions.jvmTarget = '1.8'
+}
+
+repositories {
+	jcenter()
+    maven {
+        url 'https://s3-ap-northeast-1.amazonaws.com/dynamodb-local-tokyo/release'
+    }
+}
+
+dependencies {
+	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "com.amazonaws:aws-lambda-java-core:1.1.0"
+    compile "com.amazonaws:DynamoDBLocal:[1.11,2.0)"
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.5'
+}

@@ -1,0 +1,2 @@
+rootProject.name = 'serverless-work'
+include 'get-movie-info'
