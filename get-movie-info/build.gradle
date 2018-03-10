@@ -2,7 +2,7 @@ buildscript {
 	ext.kotlin_version = '1.2.30'
 	dependencies {
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-		classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
+		classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
 	}
 	repositories {
 		jcenter()
@@ -10,6 +10,9 @@ buildscript {
 }
 
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.johnrengelman.shadow'
+
 
 ext.kotlin_version = '1.2.30'
 
@@ -30,8 +33,14 @@ repositories {
 
 dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "com.amazonaws:aws-lambda-java-core:1.1.0"
-    compile "com.amazonaws:DynamoDBLocal:[1.11,2.0)"
+	compile 'com.google.dagger:dagger:2.15'
+    compileOnly "com.amazonaws:aws-lambda-java-core:1.1.0"
+    compileOnly "com.amazonaws:DynamoDBLocal:[1.11,2.0)"
+    kapt 'com.google.dagger:dagger-compiler:2.15'
+    testCompile 'io.kotlintest:kotlintest:2.0.7'
+    testCompile "com.amazonaws:aws-lambda-java-core:1.1.0"
+    testCompile "com.amazonaws:DynamoDBLocal:[1.11,2.0)"
+    kaptTest 'com.google.dagger:dagger-compiler:2.15'
 }
 
 task wrapper(type: Wrapper) {
