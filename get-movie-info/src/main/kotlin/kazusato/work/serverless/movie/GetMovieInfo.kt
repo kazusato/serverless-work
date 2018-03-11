@@ -15,6 +15,6 @@ class GetMovieInfo : RequestHandler<MovieInfoRequest, MovieInfoResponse> {
     }
 
     override fun handleRequest(req: MovieInfoRequest, context: Context): MovieInfoResponse {
-        return movieInfoService.getMovieInfo(req)
+        return movieInfoService.getMovieInfo(req) ?: MovieInfoResponse(req.year, req.title)
     }
 }

@@ -1,11 +1,14 @@
 package kazusato.work.serverless.movie
 
+import javax.inject.Inject
+
 class MovieInfoService {
 
-    fun getMovieInfo(req: MovieInfoRequest): MovieInfoResponse {
-        val resp = MovieInfoResponse()
-        resp.year = req.year
-        resp.title = req.title
+    @Inject
+    lateinit var repo: MovieRepository
+
+    fun getMovieInfo(req: MovieInfoRequest): MovieInfoResponse? {
+        val resp = repo.findMovieInfo(req.year, req.title)
 
         return resp
     }

@@ -11,4 +11,4 @@ aws lambda create-function \
 	--handler kazusato.work.serverless.movie.GetMovieInfo::handleRequest \
 	--runtime java8 \
 	--timeout 30 \
-	--memory-size 128
+	--memory-size 256
