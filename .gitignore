@@ -8,6 +8,6 @@ out/
 .project
 .classpath
 .settings
-/bin/
-/docker/files/*.war
-/temp/
+bin/
+temp/
+get-movie-info/shared-local-instance.db

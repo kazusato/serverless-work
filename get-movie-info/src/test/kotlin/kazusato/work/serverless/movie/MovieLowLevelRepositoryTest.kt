@@ -1,23 +1,22 @@
 package kazusato.work.serverless.movie
 
 import dagger.Component
-import dagger.Module
 import io.kotlintest.TestCaseContext
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldNotBe
 import io.kotlintest.specs.StringSpec
-import kazusato.work.serverless.module.DaggerServiceComponent
 import kazusato.work.serverless.module.ServiceModule
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class MovieRepositoryTest : StringSpec() {
+class MovieLowLevelRepositoryTest : StringSpec() {
 
     @Inject
     lateinit var repo: MovieRepository
 
     override fun interceptTestCase(context: TestCaseContext, test: () -> Unit) {
-        DaggerMovieRepositoryTest_MovieRepositoryTestComponent.create().inject(context.spec as MovieRepositoryTest)
+        DaggerMovieLowLevelRepositoryTest_MovieLowLevelRepositoryTestComponent.create().inject(
+                context.spec as MovieLowLevelRepositoryTest)
         test()
     }
 
@@ -32,8 +31,8 @@ class MovieRepositoryTest : StringSpec() {
 
     @Singleton
     @Component(modules = [ServiceModule::class])
-    interface MovieRepositoryTestComponent {
-        fun inject(target: MovieRepositoryTest)
+    interface MovieLowLevelRepositoryTestComponent {
+        fun inject(target: MovieLowLevelRepositoryTest)
     }
 
 }

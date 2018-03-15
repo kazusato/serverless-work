@@ -4,7 +4,10 @@ import dagger.Module
 import dagger.Provides
 import kazusato.work.serverless.dynamodb.DynamoDBClientFactory
 import kazusato.work.serverless.dynamodb.LambdaDynamoDBClientFactory
+import kazusato.work.serverless.dynamodb.LocalDynamoDBClientFactory
+import kazusato.work.serverless.movie.MovieDocumentRepository
 import kazusato.work.serverless.movie.MovieInfoService
+import kazusato.work.serverless.movie.MovieLowLevelRepository
 import kazusato.work.serverless.movie.MovieRepository
 import javax.inject.Singleton
 
@@ -22,7 +25,8 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideMovieRepository(): MovieRepository {
-        val repo = MovieRepository()
+//        val repo = MovieLowLevelRepository()
+        val repo = MovieDocumentRepository()
         DaggerServiceComponent.create().inject(repo)
         return repo
     }
@@ -31,8 +35,8 @@ class ServiceModule {
     @Singleton
     fun provideDynamoDBClientFactory(): DynamoDBClientFactory {
 //        return RemoteDynamoDBClientFactory()
-//        return LocalDynamoDBClientFactory()
-        return LambdaDynamoDBClientFactory()
+        return LocalDynamoDBClientFactory()
+//        return LambdaDynamoDBClientFactory()
     }
 
 }

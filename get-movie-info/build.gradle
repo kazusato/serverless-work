@@ -35,7 +35,7 @@ dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	compile 'com.google.dagger:dagger:2.15'
     compileOnly "com.amazonaws:aws-lambda-java-core:1.1.0"
-    compile "com.amazonaws:DynamoDBLocal:[1.11,2.0)"
+    compile "com.amazonaws:aws-java-sdk-dynamodb:[1.11,2.0)"
     kapt 'com.google.dagger:dagger-compiler:2.15'
     testCompile 'io.kotlintest:kotlintest:2.0.7'
     testCompile "com.amazonaws:aws-lambda-java-core:1.1.0"
